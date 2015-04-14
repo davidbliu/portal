@@ -1,4 +1,4 @@
 *.pyc
 flask/*.pyc
 .DS_Store
-
+tabling/config*
