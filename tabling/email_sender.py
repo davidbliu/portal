@@ -7,8 +7,10 @@ def get_mailer():
 		lines = [x for x in configfile]
 		username = lines[0].rstrip().replace(' ', '')
 		password = lines[1].rstrip().replace(' ', '')
+	print 'connecting with '+username+' '+password
 	gmailer = GMail(username, password)
 	gmailer.connect()
+	return gmailer
 
 
 # def get_mail_reader():
@@ -30,17 +32,18 @@ def render_tabling_template():
 
 if __name__=='__main__':
 
-	SEND_MESSAGE = False
+	SEND_MESSAGE = True
 
 	gmailer = get_mailer()
 	if gmailer and SEND_MESSAGE:
 		print dir(gmailer)
 		subject = "This is the subject"
-		to = "davidbliu@gmail.com"
+		to = "kzhang22@berkeley.edu"
 		html = "<h1>This is the HTML</h1>"
 		msg = Message(subject = subject, to = to, html = html, attachments = None)
 		gmailer.send(msg)
 	else:
+		print gmailer
 		print 'No message sent'
 
 	print dir(gmailer)
